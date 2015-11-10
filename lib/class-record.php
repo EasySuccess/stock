@@ -13,16 +13,12 @@ class Record
 		$this->tableName = $par1;
 	}
 	
-	function setField($par1){
-		array_push($this->fields, $par1);
-	}
-	
-	function setValue($par1, $par2){
+	function setValue($par1, $par2 = ""){
 		array_push($this->fields, $par1);
 		array_push($this->values, $par2);
 	}
 	
-	function setMatchValue($par1, $par2){
+	function setMatchValue($par1, $par2 = ""){
 		array_push($this->matchFields, $par1);
 		array_push($this->matchValues, $par2);
 	}

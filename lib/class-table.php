@@ -8,6 +8,9 @@ class Table
 		$this->DB = new DB($DBInfo);
 	}
 	
+	//------------------------------------------------------------------------------------------------------------------------------------------
+	//Doing change below
+	
 	public function getRecord($record){
 		
 		$table = $record->tableName;
@@ -16,14 +19,14 @@ class Table
 		$orderByStatement = "";
 		
 		foreach($record->getFields() as $field){
-			$statement .= "`$field`,";
+			$statement .= "$field,";
 		}
 		$statement = substr($statement, 0, -1);
 		
 		if(count($record->getMatchFields()) > 0){
-			$matchStatement .= "WHERE ";
+			$matchStatement .= 'WHERE ';
 			foreach($record->getMatchFields() as $field){
-				$matchStatement .= "`$field`='{$record->getMatchValue($field)}',";
+				$matchStatement .= $field . ' = ' . $record->getMatchValue($field) . ',';
 			}
 			$matchStatement = substr($matchStatement, 0, -1);
 		}
@@ -34,10 +37,13 @@ class Table
 	
 		$sql =	"	SELECT $statement	FROM $table $matchStatement $orderByStatement";
 
+		echo $sql;
 		$res = $this->DB->query($sql);
       
 		return $res;
 	}
+	
+	//-------------------------------------------------------------------------------------------------------------------
 	
 	public function addRecord($record){
 	
